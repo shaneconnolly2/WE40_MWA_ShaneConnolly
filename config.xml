@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<widget xmlns   = "http://www.w3.org/ns/widgets"
+    xmlns:gap   = "http://phonegap.com/ns/1.0"
+    id          = "com.shaneconnolly.AngularJSAssessment"
+    versionCode = "10"
+    version     = "1.0.0" >
+
+<!-- versionCode is optional and Android only -->
+
+	<name>Angular JS Assessment</name>
+	<description>
+	  To Do App - presented in Angular JS
+	</description>
+	<author href="www.shaneconnolly.com">
+	  Shane Connolly
+	</author>
+
+	<!-- Device permission for 'deviceready' -->
+	<feature name="http://api.phonegap.com/1.0/device" />
+
+	<!-- Customize your app and platform with the preference element. -->
+	<preference name="permissions" value="none" />
+
+	<platform name="ios" />
+
+	<!-- Set the Spash Screen -->
+	<!-- Going for single default Splash screen -->
+	<splash src="splash.png" />
+
+	<!-- Set the icon-->
+	<icon src="images/appicon/android/ldpi.png" platform="android" qualifier="ldpi" />
+	<icon src="images/appicon/android/mdpi.png" platform="android" qualifier="mdpi" />
+	<icon src="images/appicon/android/hdpi.png" platform="android" qualifier="hdpi" />
+	<icon src="images/appicon/android/xhdpi.png" platform="android" qualifier="xhdpi" />
+	<icon src="images/appicon/android/xxhdpi.png" platform="android" qualifier="xxhdpi" />	
+
+</widget>

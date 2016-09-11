@@ -1,0 +1,99 @@
+<!--
+* Author: Shane Connolly
+* Assignment: WE4 Mobile Web Applications, Digital Skills Academy
+* Date : 2016/08/19
+
+* References
+* http://stackoverflow.com/questions/15300067/disable-submit-button-when-form-invalid-with-angularjs
+* http://yuilibrary.com/yui/docs/app/app-todo.html
+* http://web.koesbong.com/2011/01/24/sortable-and-editable-to-do-list-using-html5s-localstorage/
+* http://www.hongkiat.com/blog/jquery-ui-sortable/
+* http://blog.jaykanakiya.com/angular-js-todo-list-sortable/
+* http://www.w3schools.com/css/css_image_transparency.asp
+* http://stackoverflow.com/questions/6382023/changing-the-color-of-a-hr-element
+* http://stackoverflow.com/questions/15166270/how-can-i-get-the-value-of-the-checked-radio-button-when-submitting-a-form-using
+* http://jsfiddle.net/arunpjohny/P3ctY/
+*
+-->
+
+<!doctype html>
+<html>
+	<head>
+		<meta charset = "utf-8">	
+
+		<!-- Bootstrap -->
+    	<link href="css/bootstrap.min.css" rel="stylesheet">
+		<!-- My CSS -->
+    	<link href="css/styles.css" rel="stylesheet">
+	</head>
+
+	<body ng-app = "toDoApp">	
+
+		<div class = "container text-center" data-ng-controller = "toDoController">
+			<!-- Simple Message to display the count of To Dos remaining -->
+			<h2>You have {{GetCount()}} item(s) To Do</h2>
+       		<hr/>
+
+       		<!-- Search through the To Dos -->
+			<input type = "text" data-ng-model = "searchToDo" placeholder="Search To Do List">
+       		<hr/>
+
+       		<!-- Form to add a new To Do -->
+			<form name="mainFrm" data-ng-submit="addToDo()" ng-init="radioValue='low'">
+				<input type="text" name="newToDo" data-ng-model="newToDo" required placeholder="Add New To Do Item" />
+				<br>
+				Item Importance
+				<br>
+				<label class = "lowRadio" for="input1">Low</label>
+				<input type="radio" id="input1" data-ng-model="radioValue" value="low" checked="checked">
+				<br>
+				<label class = "mediumRadio" for="input2">Medium</label>
+				<input type="radio" id="input2" data-ng-model="radioValue"value="medium">
+				<br>
+				<label class = "highRadio" for="input3">High</label>
+				<input type="radio" id="input3" data-ng-model="radioValue" value="high">
+				<br>
+
+				<button ng-disabled="mainFrm.$invalid">Submit</button>
+			</form>
+			<hr/>
+
+			<!-- Clear completed tasks if they are checked off -->
+			<button data-ng-click="clearCompleted()">Clear Completed Tasks</button>
+
+			<!-- List the current to Dos -->
+			<ul data-ng-model="toDos">
+				<!-- Get each To Do dependant on the search text above -->
+				<li data-ng-repeat = "toDo in toDos | filter:searchToDo">				
+				
+				<span data-ng-class="{'done':toDo.status}">					
+					<span ng-switch on="toDo.importance">
+					   <img class = "importanceIcon" ng-switch-when = "high" data-ng-src={{highImportIcon}}>
+					   <img class = "importanceIcon" ng-switch-when = "medium" data-ng-src={{medImportIcon}}>
+					   <img class = "importanceIcon" ng-switch-when = "low" data-ng-src={{lowImportIcon}}>
+					</span>	
+
+					<!-- Display the title of the To Do -->
+					{{toDo.title}} 		
+				</span>
+
+				<!-- Display a checkbox to strike off a To Do -->
+				<input type="checkbox" data-ng-model="toDo.status" />
+
+				<!-- Display a delete button to delete the current To Do -->
+				<button data-ng-click ="delete($index)"> x </button> </li>
+			</ul>
+
+		</div>
+		
+		<!-- Scripts -->
+		<script type = "text/javascript" src = "js/angularJS-min.js"></script>
+		<script type = "text/javascript" src = "js/main.js"></script>
+	
+		
+	</body>
+
+	
+
+</html>
+
