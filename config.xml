@@ -21,7 +21,7 @@
 	<!-- Customize your app and platform with the preference element. -->
 	<preference name="permissions" value="none" />
 
-	<platform name="ios" />
+	
 
 	<!-- Set the Spash Screen -->
 	<!-- Going for single default Splash screen -->
